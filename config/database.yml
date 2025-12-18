@@ -55,7 +55,10 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-url: <%= ENV["DATABASE_URL"] %>
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   #primary: &primary_production
    # <<: *default
     #adapter: postgresql

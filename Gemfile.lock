@@ -406,7 +406,7 @@ DEPENDENCIES
   jsbundling-rails
   kamal
   mysql2 (~> 0.5)
-  pg
+  pg (~> 1.4)
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.1)

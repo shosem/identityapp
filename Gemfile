@@ -12,7 +12,7 @@ end
 
 # PostgreSQLは本番環境だけ
 group :production do
-  gem "pg"
+  gem "pg", "~> 1.4"
 end
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
