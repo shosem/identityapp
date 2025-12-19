@@ -1,0 +1,15 @@
+<p style="color: blue; background-color: yellow; font-family:Noto Serif JP,serif;">こんにちは！</p>
+
+<h1><%= @index_title %></h1>
+
+<div id="users">
+<% @users.each do |user| %>
+<%= render user %>
+<p style="color:blue">
+<%= link_to "詳細", user %>
+</p>
+<br>
+<% end %>
+</div>
+
+<%= link_to "新規作成", new_user_path %>
