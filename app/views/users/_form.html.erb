@@ -10,17 +10,26 @@
       </ul>
     </div>
   <% end %>
-
+<br>
   <div>
-    <%= form.label :name, 'ニックネーム', style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, 'ニックネーム', class: "text-sm block" %>
+    <%= form.text_field :name, class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
    <div>
-    <%= form.label :highest_rank, '最高段位', style: "display: block" %>
-    <%= form.text_field :highest_rank %>
+    <%= form.label :highest_rank, '最高段位', class: "text-sm block" %>
+    <%= form.text_field :highest_rank, class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
+   <div>
+    <%= form.label :password, 'パスワード', class: "text-sm block" %>
+    <%= form.password_field :password, class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+<div>
+    <%= form.label :password_confirmation, 'パスワード確認', class: "text-sm block" %>
+    <%= form.password_field :password_confirmation,autocomplete: "new-password", class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
   <div>
     <%= form.submit '登録' %>
   </div>

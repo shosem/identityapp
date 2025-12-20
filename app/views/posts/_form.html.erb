@@ -1,0 +1,27 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br>
+  <div>
+    <%= form.label :title, 'タイトル', class: "text-sm block" %>
+    <%= form.text_field :title, class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+   <div>
+    <%= form.label :text, '内容', class: "text-sm block" %>
+    <%= form.text_area :text, class: "w-80 h-32  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+  <div>
+    <%= form.submit '登録',class:"inline-block rounded-md bg-blue-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-blue-500" %>
+  </div>
+<% end %>

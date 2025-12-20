@@ -32,7 +32,12 @@
       第五人格大会結果
     </a>
       <div>
-      <%= link_to "ログイン", new_user_path, class: "inline-block rounded-md bg-gray-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-gray-600" %>
+      <% if current_user.present? %>
+      <span class="inline-block rounded-md bg-gray-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-gray-600"><%= current_user.name %>さん、こんにちは！</span>
+      <%= link_to "ログアウト", logouts_path, class: "inline-block rounded-md bg-gray-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-gray-600" %>
+      <% else %>
+      <%= link_to "ログイン", new_logins_path, class: "inline-block rounded-md bg-gray-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-gray-600" %>
+      <% end %>
     </div>
   </div>
     </header>
@@ -46,6 +51,9 @@
         </li>
         <li>
           <%= link_to 'ユーザー', users_path, class: "block py-2 px-4 text-blue-800 rounded-lg font-medium" %>
+        </li>
+        <li>
+          <%= link_to '投稿', posts_path, class: "block py-2 px-4 text-blue-800 rounded-lg font-medium" %>
         </li>
         </ul>
         </div>

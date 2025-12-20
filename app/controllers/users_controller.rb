@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_url(@user), notice:"ユーザー登録に成功しました"
     else
-      render :new
+      render :new, status: :unprocessable_entity 
     end
   end
 
@@ -25,9 +25,16 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to user_url(@user), notice:"ユーザーの更新に成功しました"
+    else
+      render :edit,status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @user.destroy
+    redirect_to users_url, notie:"ユーザーの削除に成功しました"
   end
   
   private
@@ -37,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :highest_rank)
+    params.require(:user).permit(:name, :highest_rank, :password, :password_confirmation)
   end
 
   def set_index_title

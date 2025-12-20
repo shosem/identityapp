@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<h1><%= @post.title %></h1>
+
+<%= render @post %>
+
+<div>
+  <%= link_to "編集", edit_post_path(@post),class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded" %> 
+  <%= link_to "一覧", posts_path, class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded" %>
+
+  <%= button_to "削除", @post, method: :delete, class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded" %>
+</div>

@@ -2,10 +2,10 @@
 <h1><%= @show_title %></h1>
 
 <%= render @user %>
-
+<br>
 <div>
-  <%= link_to "編集", edit_user_path(@user),class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded"%> |
-  <%= link_to "一覧", users_path %>
+  <%= link_to "編集", edit_user_path(@user),class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded" %> 
+  <%= link_to "一覧", users_path, class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded" %>
 
-  <%= button_to "削除", @user, method: :delete %>
+  <%= button_to "削除", @user, method: :delete, class:"border-2 border-black hover:bg-blue-700 text-black px-2 py-1 rounded" %>
 </div>
