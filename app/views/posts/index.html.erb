@@ -12,4 +12,9 @@
 <% end %>
 </div>
 
+<% if current_user.present? %> <!-- ログイン済みの場合 -->
 <%= link_to "新規作成", new_post_path, class:"border-2 border-black bg-blue-400 hover:bg-blue-200 text-black px-2 py-1 rounded"%>
+<% else %>
+<p >ログイン後、投稿できるようになります</p>
+<%= link_to "ログイン", new_logins_path,class:"border-2 border-black bg-blue-400 hover:bg-blue-200 text-black px-2 py-1" %>
+<% end %>
