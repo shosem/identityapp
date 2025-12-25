@@ -1,0 +1,9 @@
+<header class="sticky top-0 z-50 bg-gray-900 shadow-lg">
+  <div class="flex items-center justify-between px-2 py-3 max-w-7xl mx-auto">
+    <%= link_to "第五人格掲示板", root_path, class: "text-white text-xl font-bold" %>
+      <div>
+        <span class="inline-block rounded-md bg-gray-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-gray-600"><%= current_user.name %>さん、こんにちは！</span>
+        <%= link_to "ログアウト", logout_path, class: "inline-block rounded-md bg-gray-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-gray-600", data: { turbo_method: :delete } %>
+      </div>
+  </div>
+</header>

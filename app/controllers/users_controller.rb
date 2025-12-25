@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user,only:%i[show edit update destroy]
   
   def index
-    @users = User.all
+    @users = User.where.not(name:"admin")
   end
 
   def show
@@ -15,8 +15,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_url(@user), notice:"ユーザー登録に成功しました"
+      redirect_to user_url(@user), success: "ユーザー登録に成功しました"
     else
+      flash.now[:danger] = "ユーザー登録に失敗しました"
       render :new, status: :unprocessable_entity 
     end
   end
@@ -26,15 +27,16 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_url(@user), notice:"ユーザーの更新に成功しました"
+      redirect_to user_url(@user), success: "ユーザーの更新に成功しました"
     else
+      flash.now[:danger] = "ユーザーの更新に失敗しました"
       render :edit,status: :unprocessable_entity
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url, notie:"ユーザーの削除に成功しました"
+    redirect_to users_url, success:"ユーザーの削除に成功しました"
   end
   
   private

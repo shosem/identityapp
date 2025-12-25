@@ -1,20 +1,15 @@
-<p style="color: green"><%= notice %></p>
 <h1 class="border-b border-black h-10 pt-2">投稿一覧</h1>
 <br>
 
-<div id="posts">
-<% @posts.each do |post| %>
-<%= render post %>
-<p style="color:blue">
-<%= link_to "詳細", post %>
-</p>
-<br>
-<% end %>
+<div id="posts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @posts.each do |post| %>
+    <%= render post %>  <!-- _post.html.erb のカードがここに入る -->
+  <% end %>
 </div>
 
-<% if current_user.present? %> <!-- ログイン済みの場合 -->
-<%= link_to "新規作成", new_post_path, class:"border-2 border-black bg-blue-400 hover:bg-blue-200 text-black px-2 py-1 rounded"%>
+<% if current_user.present? %>
+  <%= link_to "新規作成", new_post_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
 <% else %>
-<p >ログイン後、投稿できるようになります</p>
-<%= link_to "ログイン", new_logins_path,class:"border-2 border-black bg-blue-400 hover:bg-blue-200 text-black px-2 py-1" %>
+  <p class="mt-8 text-center">ログイン後、投稿できるようになります</p>
+  <%= link_to "ログイン", new_logins_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
 <% end %>

@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_post,onle:%i[show edit update delete]
+  before_action :set_post, only:%i[show edit update destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:user)
   end
 
   def new
@@ -13,8 +13,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-    redirect_to @post,notice:"投稿しました"
+    redirect_to @post,success: "投稿しました"
     else
+      flash.now[:danger] = "投稿できませんでした"
       render :new
     end
   end
@@ -27,21 +28,22 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_url(@post),notice:"編集しました"
+      redirect_to post_url(@post),success: "編集しました"
     else
+      flash.now[:danger] = "編集に失敗しました"
       render :edit,status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_url,notice:"削除しました"
+    redirect_to posts_url,success: "削除しました"
   end
 
   private
 
   def set_post
-    @post = Post.find_by(params[:id])
+    @post = Post.find_by(id: params[:id])
   end
 
   def post_params
