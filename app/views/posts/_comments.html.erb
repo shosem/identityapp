@@ -1,0 +1,46 @@
+<div class="mt-12 bg-white rounded-xl shadow-md p-8">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">
+   コメント(<%= @post.visible_comments.count %>)
+  </h2>
+
+  <% if @post.comments.any? %>
+    <div class="space-y-6">
+      <% @post.comments.each do |comment| %>
+        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+          <% if comment.deleted? %> <!-- コメントのdeletedがtrueだった場合 -->
+          <div class="flex items-center justify-between mb-3">
+            <p class="font-medium text-gray-800">
+              コメントが削除されました
+            </p>
+          </div>
+          <% else %>
+        <!-- コメント投稿者と日時 -->
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-medium text-gray-800">
+              <%= comment.user.name || "匿名" %>
+            </span>
+            <% if comment.user.id == current_user.id %>
+            <span class="text-sm text-gray-500">
+              <%= l comment.created_at, format: :short %>
+              <%= link_to '削除', [@post,comment], data: { turbo_method: :delete }, class: "inline-flex items-center px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition" %>
+            </span>
+            <% else %>
+            <span class="text-sm text-gray-500">
+              <%= l comment.created_at, format: :short %>
+            </span>
+            <% end %>
+          </div>
+        <!-- コメント本文 -->
+          <p class="text-gray-700 leading-relaxed">
+            <%= simple_format comment.content %>
+          </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-600 text-center py-6">
+      まだコメントがありません。最初のコメントを投稿してみましょう！
+    </p>
+  <% end %>
+</div>

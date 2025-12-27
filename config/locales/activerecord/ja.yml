@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ニックネーム
+        highest_rank: 最高段位
+        password: パスワード
+        password_confirmation: 確認用パスワード

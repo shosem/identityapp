@@ -8,8 +8,8 @@
 </div>
 
 <% if current_user.present? %>
-  <%= link_to "新規作成", new_post_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
+  <%= link_to "投稿する", new_post_path, class: "inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition" %>
 <% else %>
-  <p class="mt-8">ログイン後、投稿・閲覧できるようになります</p>
-  <%= link_to "ログイン", login_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
+  <p class="mt-8">ログイン後、投稿・閲覧・コメントできるようになります！</p>
+  <%= link_to "ログイン", login_path, class: "inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition" %>
 <% end %>

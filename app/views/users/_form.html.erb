@@ -1,7 +1,7 @@
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(user.errors.count, "件のエラーがあります。。") %> </h2>
 
       <ul>
         <% user.errors.each do |error| %>
@@ -19,7 +19,11 @@
 
    <div>
     <%= form.label :highest_rank, '最高段位', class: "text-sm block" %>
-    <%= form.text_field :highest_rank, class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+    <%= form.select :highest_rank,
+                     options_for_select(
+                      ["蜂","蜘蛛","犬","コブラ","鹿","ワニ","マンモス","サベタイ","グリフォン","フラライ","ユニコーン","ゴリラ","勇士","邪竜","ヘラクレス","ヒュドラ"]),
+                    { include_blank: "選択してください" },
+                     class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
    <div>
