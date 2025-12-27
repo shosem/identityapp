@@ -1,5 +1,11 @@
 <% flash.each do |message_type, message| %>
-  <div class="<%= flash_bg_color(message_type) %> px-4 py-2 rounded-md text-white">
+  <% if logged_in? %>
+  <div class="<%= flash_bg_color(message_type) %> px-4 py-2 rounded-md text-white md:ml-40">
     <%= message %>
   </div>
+  <% else %>
+   <div class="<%= flash_bg_color(message_type) %> px-4 py-2 rounded-md text-white">
+    <%= message %>
+  </div>
+<% end %>
 <% end %>

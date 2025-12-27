@@ -10,6 +10,6 @@
 <% if current_user.present? %>
   <%= link_to "新規作成", new_post_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
 <% else %>
-  <p class="mt-8 text-center">ログイン後、投稿できるようになります</p>
-  <%= link_to "ログイン", new_logins_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
+  <p class="mt-8">ログイン後、投稿・閲覧できるようになります</p>
+  <%= link_to "ログイン", login_path, class: "inline-flex items-center px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition" %>
 <% end %>

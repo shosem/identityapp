@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
 
     if @user
       session[:user_id] = @user.id
-      redirect_to root_path, success: "ログインに成功しました"
+      redirect_to posts_path, success: "ログインに成功しました"
     else
       flash.now[:danger] = "ログインに失敗しました"
       render :new, status: :unprocessable_entity

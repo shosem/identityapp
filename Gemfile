@@ -66,6 +66,8 @@ group :development, :test do
   gem 'devise'
 
   gem 'draper', '4.0.2'
+
+  gem 'rails-i18n', '~> 8.0.0'
 end
 
 group :development do

@@ -33,7 +33,7 @@
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    <%= render 'shared/flash_message' %>
+   <%= render 'shared/flash_message' %>
 
     
     <div class="min-h-screen flex">
@@ -47,6 +47,7 @@
     <% else %>
     <div class="flex-1 md:ml-10 mt-10">
     <% end %>
+    
     <%= yield %>
     </div>
     </div>

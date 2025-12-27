@@ -11,6 +11,7 @@
     </div>
   <% end %>
 <br>
+  <div class="bg-white rounded-xl shadow-md p-8 max-w-md space-y-4">
   <div>
     <%= form.label :name, 'ニックネーム', class: "text-sm block" %>
     <%= form.text_field :name, class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
@@ -30,7 +31,8 @@
     <%= form.label :password_confirmation, 'パスワード確認', class: "text-sm block" %>
     <%= form.password_field :password_confirmation,autocomplete: "new-password", class: "w-40 px-2  border border-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
   </div>
+  </div>
   <div>
-    <%= form.submit '登録' %>
+    <%= form.submit '登録', class: "my-4 inline-block rounded-md bg-blue-700 px-6 py-3 text-sm font-semibold uppercase text-white transition hover:bg-blue-500" %>
   </div>
 <% end %>
