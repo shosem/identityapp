@@ -10,10 +10,7 @@ group :development, :test do
   gem "mysql2", "~> 0.5"
 end
 
-# PostgreSQLは本番環境だけ
-group :production do
-  gem "pg", "~> 1.4"
-end
+gem "pg", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
