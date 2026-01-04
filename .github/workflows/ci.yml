@@ -55,18 +55,12 @@ jobs:
 
     services:
       mysql:
-        image: mysql
+        image: mysql2
         env:
-          MYSQL_ROOT_PASSWORD: password     # ← これを追加（任意の強めのパスワードでOK）
+          MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: myapp_test
           MYSQL_ROOT_HOST: "%"
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      # redis:
-      #   image: valkey/valkey:8
-      #   ports:
-      #     - 6379:6379
-      #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - name: Install packages
@@ -93,12 +87,14 @@ jobs:
 
     services:
       mysql:
-        image: mysql
+        image: mysql:8
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ALLOW_EMPTY_PASSWORD: password
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: >-
+          --health-cmd="mysqladmin ping --silent -uroot -ppassword"
+          --health-interval=10s --health-timeout=5s --health-retries=5
 
       # redis:
       #   image: valkey/valkey:8
@@ -118,13 +114,29 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Export DB env for Rails
+        run: |
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "DATABASE_USERNAME=root" >> $GITHUB_ENV
+          echo "DATABASE_PASSWORD=password" >> $GITHUB_ENV
+          echo "DATABASE_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "DATABASE_PORT=3306" >> $GITHUB_ENV
+          echo "DATABASE_NAME_TEST=myapp_test" >> $GITHUB_ENV
+
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            mysql -u "$DATABASE_USERNAME" -p"$DATABASE_PASSWORD" -h "$DATABASE_HOST" -P "$DATABASE_PORT" -e "SELECT 1" && break
+            echo "Waiting for MySQL..."
+            sleep 2
+        done
+
+      - name: Prepare DB
+        run: |
+          bundle exec rails db:create db:schema:load RAILS_ENV=test
+
       - name: Run System Tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: mysql2://127.0.0.1:3306
-          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test:system
+        run: bundle exec rails test:system RAILS_ENV=test
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
