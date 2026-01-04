@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user,only:%i[show edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[new create]
-  
+
   def index
-    @users = User.where.not(name:"admin")
+    @users = User.where.not(name: "admin")
   end
 
   def show
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       redirect_to user_url(@user), success: "ユーザー登録に成功しました"
     else
       flash.now[:danger] = "ユーザー登録に失敗しました"
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,15 +31,15 @@ class UsersController < ApplicationController
       redirect_to user_url(@user), success: "ユーザーの更新に成功しました"
     else
       flash.now[:danger] = "ユーザーの更新に失敗しました"
-      render :edit,status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url, success:"ユーザーの削除に成功しました"
+    redirect_to users_url, success: "ユーザーの削除に成功しました"
   end
-  
+
   private
 
   def set_user
@@ -57,5 +57,4 @@ class UsersController < ApplicationController
   def set_show_title
     @show_title = "ユーザー詳細"
   end
-
 end

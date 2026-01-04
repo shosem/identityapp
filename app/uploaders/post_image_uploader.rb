@@ -8,7 +8,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # storage :fog
 
   def default_url
-    'post_placeholder.jpg'
+    "post_placeholder.jpg"
   end
 
   # Override the directory where uploaded files will be stored.

@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def page_title(title = "")
-    base_title = '第五人格掲示板'
+    base_title = "第五人格掲示板"
     title.present? ? "#{title} | #{base_title}" : base_title
   end
 end
