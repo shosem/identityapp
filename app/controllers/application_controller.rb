@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
-  
+
   def admin?
     !!current_user&.admin
   end
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id:session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   private

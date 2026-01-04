@@ -6,4 +6,5 @@ class Post < ApplicationRecord
     comments.where(deleted: false).order(created_at: :asc)
   end
 
+  mount_uploader :post_image, PostImageUploader
 end

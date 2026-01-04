@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only:%i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[index]
 
   def index
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-    redirect_to @post,success: "投稿しました"
+    redirect_to @post, success: "投稿しました"
     else
       flash.now[:danger] = "投稿できませんでした"
       render :new
@@ -29,16 +29,16 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_url(@post),success: "編集しました"
+      redirect_to post_url(@post), success: "編集しました"
     else
       flash.now[:danger] = "編集に失敗しました"
-      render :edit,status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_url,success: "削除しました"
+    redirect_to posts_url, success: "削除しました"
   end
 
   private
@@ -48,7 +48,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title,:text)
+    params.require(:post).permit(:title, :text, :post_image, :post_image_cache)
   end
-
 end

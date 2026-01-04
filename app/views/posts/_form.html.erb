@@ -35,6 +35,14 @@
                            placeholder: "言いたいことを言い合おう！" %>
       </div>
 
+      <!-- 写真追加フォーム -->
+      <div>
+        <%= form.label :post_image, '写真を追加' %>
+        <%= form.file_field :post_image, class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200",
+                                         placeholder: "写真を追加" %>
+        <%= form.hidden_field :post_image_cache %>
+      </div>
+
       <!-- 送信ボタン -->
       <div class="text-center">
         <%= form.submit "登録", 

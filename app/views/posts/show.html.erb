@@ -1,3 +1,4 @@
+<% content_for(:title, @post.title.truncate(9)) %>
 <%= render 'show' %>
 <% if admin? %>
   <%= render 'admin_comments' %>

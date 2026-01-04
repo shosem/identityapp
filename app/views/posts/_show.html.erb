@@ -25,6 +25,12 @@
     </div>
   </div>
 
+  <div class="mb-10 relative w-full" style="aspect-ratio: 19.5 / 9;">
+    <div class="absolute inset-0 bg-gray-100 rounded-xl overflow-hidden">
+      <%= image_tag @post.post_image_url, class: "w-full h-full object-contain bg-gray-100", alt: @post.title %>
+    </div>
+  </div>
+
   <!-- 本文 -->
   <div class="bg-white rounded-xl shadow-md p-8 prose prose-lg max-w-none text-gray-800 leading-relaxed">
     <%= simple_format @post.text %>
