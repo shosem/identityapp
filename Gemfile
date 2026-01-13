@@ -49,7 +49,7 @@ gem "image_processing", "~> 1.2"
 
 gem "devise"
 
-gem "draper", "4.0.2"
+gem "draper", "4.0.6"
 
 gem "rails-i18n", "~> 8.0.0"
 
