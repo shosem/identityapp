@@ -10,7 +10,7 @@ group :development, :test do
   gem "mysql2", "~> 0.5"
 end
 
-gem "pg", "~> 1.4"
+gem "pg", "~> 1.6"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
